@@ -1,0 +1,20 @@
+---
+title: Adding mod support for the Stage engine
+date: 2026-11-07
+tags: [stage, rust, assemblyscript]
+---
+
+One of the key principles of the Stage engine is flexibility, so adding engine mods
+was planned for some time and with `v0.19.1` they are now possible. This helps when
+deciding what should be in the engine core and what should be a mod. Triggers, Conditions
+and Event types are written on the same foundation as custom types from Mods.
+
+## SDKs
+
+The engine itself is written in Rust, but I wanted to add an additional AssemblyScript 
+SDK for those familiar with the GUI system which supports JavaScript alongside HTML.
+
+_I also added [spawning](https://stage.sgail.com/developers/mods/spawning) support as part of this release, which is also included in the 
+SDKs - this opens the door for procedurally generated worlds._
+
+See [https://stage.sgail.com/developers/mods/overview](https://stage.sgail.com/developers/mods/overview) for more information.

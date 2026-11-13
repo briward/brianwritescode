@@ -1,0 +1,24 @@
+{{# One note. The catalog owns its title, day and tags; the MDX gives the body. #}}
+{{ set note = metadata.catalog.notes.find((candidate) => candidate.url === pathname) }}
+{{ layout "layouts/main.vto" {
+  title: note.title,
+  listTitle: "#",
+  listNotes: metadata.catalog.notes,
+  activeUrl: note.url,
+  paneLabel: "notes/" + note.slug + ".mdx",
+  view: "note",
+} }}
+  <article class="note">
+    <header>
+      <h1>{{ note.title |> escape }}</h1>
+      <div class="note-meta">
+        <span class="note-date">Created <time datetime="{{ note.date }}" title="{{ note.date }}" data-time-ago>{{ note.date }}</time></span>
+        {{ include "partials/tag-links.vto" { tags: note.tags } }}
+      </div>
+    </header>
+
+    <div class="prose">
+      {{ content |> safe }}
+    </div>
+  </article>
+{{ /layout }}

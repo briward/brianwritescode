@@ -1,0 +1,31 @@
+---
+title: Raptor toolchain and performance improvements
+date: 2026-11-06
+tags: [raptor, node, deno]
+---
+
+The [recent disappointing news](https://deno.com/blog/cloudflare)
+that Deno's team would be moving to Cloudflare and ceasing all further work
+on the Deno runtime meant I really needed to move Raptor's toolchain.
+
+The framework already supported Node out of the box, just like it supported
+Deno and Bun. But the toolchain itself was running Deno, and that needed 
+ported.
+
+While I was moving the toolchain, I had a bit of time to look into micro-optimisations.
+I added a new lightmode to the Kernel, which swaps the Web Standard `Request` object in
+favour of a lighter stand-in, resulting in 30% better performance in benchmark tests.
+
+| Scenario          | Raptor | Raptor (lightweight) | Hono    | H3      | Express | Koa     | Fastify |
+|-------------------|--------|----------------------|---------|---------|---------|---------|---------|
+| Single middleware | 69,907 | 114,694              | 112,749 | 110,778 | 60,541  | 105,440 | 124,870 |
+| 10 middleware     | 60,726 | 100,243              | 94,854  | 86,726  | 54,659  | 91,795  | 120,826 |
+| 50 middleware     | 47,786 | 64,054               | 51,370  | 54,461  | 42,794  | 61,597  | 86,256  |
+| 100 middleware    | 36,931 | 47,683               | 36,662  | 37,949  | 42,518  | 49,642  | 82,810  |
+| 200 middleware    | 26,802 | 30,901               | 23,438  | 25,256  | 28,440  | 34,691  | 57,891  |
+| JSON response     | 49,872 | 67,296               | 69,011  | 63,965  | 41,712  | 59,402  | 76,704  |
+
+See [v0.30](https://github.com/raptor-js/kernel/releases/tag/0.30.0) for more information.
+
+As an aside, despite claims that they would continue to support JSR, I decided it was better to just
+move the project over to NPM, just in case. It's now sitting at `@raptor-js/kernel`.

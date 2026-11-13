@@ -1,0 +1,15 @@
+{{# One tag's page, rendered by app/site/write-tag-pages.ts: its notes in the middle pane. #}}
+{{ layout "layouts/main.vto" {
+  title: "#" + tag.name,
+  description: "Notes tagged #" + tag.name + ".",
+  activeTag: tag.name,
+  listTitle: "#" + tag.name,
+  listNotes: tag.notes,
+  paneLabel: "tags/" + tag.name,
+  view: "list",
+} }}
+  <section class="intro">
+    <h1 class="tag-name">#{{ tag.name }}</h1>
+    <p class="muted">{{ tag.notes.length }} {{ tag.notes.length === 1 ? "note" : "notes" }}. Pick one from the list.</p>
+  </section>
+{{ /layout }}

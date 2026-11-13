@@ -1,3 +1,6 @@
-node_modules/
-.wrangler/
-dist/
+# Dependencies.
+node_modules
+
+# The site assembled for Cloudflare, and wrangler's local state.
+dist
+.wrangler

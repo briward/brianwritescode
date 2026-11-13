@@ -1,0 +1,5 @@
+<ul class="tag-links">
+  {{ for tag of tags }}
+  <li><a class="tag" href="{{ metadata.tagUrlOf(tag) }}">#{{ tag }}</a></li>
+  {{ /for }}
+</ul>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+
+  <title>{{ if title }}{{ title |> escape }} · {{ /if }}{{ metadata.site.name }}</title>
+  <meta name="description" content="{{ (description || metadata.site.description) |> escape }}">
+  <link rel="canonical" href="{{ metadata.site.origin }}{{ pathname }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ metadata.site.name }}">
+  <meta property="og:title" content="{{ (title || metadata.site.name) |> escape }}">
+  <meta property="og:description" content="{{ (description || metadata.site.description) |> escape }}">
+  <meta property="og:url" content="{{ metadata.site.origin }}{{ pathname }}">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+
+  <link rel="stylesheet" href="/css/index.css">
+
+  <!-- Marks the page as scripted before it paints, so dates stay hidden until they read "time ago". -->
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+
+<body class="view-{{ view || "list" }}">
+  <div class="app">
+    <nav class="pane pane-tags" aria-label="Tags">
+      {{ include "partials/tag-tree.vto" }}
+    </nav>
+
+    <section class="pane pane-notes" aria-labelledby="list-title">
+      <header class="pane-header">
+        <span class="pane-title" id="list-title">{{ listTitle }}</span>
+        <span class="pane-count">{{ listNotes.length }}</span>
+      </header>
+
+      {{ include "partials/note-list.vto" { notes: listNotes } }}
+    </section>
+
+    <main class="pane pane-note">
+      <header class="pane-header">
+        <a class="back-link" href="/">← notes</a>
+        <span class="pane-title pane-path">{{ paneLabel }}</span>
+        <div id="search" class="search"></div>
+      </header>
+
+      <div class="pane-body">
+        {{ content }}
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+
+</html>

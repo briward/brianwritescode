@@ -1,34 +1,54 @@
 {
   "name": "brianwritescode",
-  "version": "1.0.0",
-  "description": "Personal landing page for brianwritescode.com.",
+  "private": true,
+  "description": "Brian's public scratchpad: short tagged notes, served from a Cloudflare Worker.",
   "type": "module",
-  "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
-    "typecheck": "tsc --noEmit"
+  "engines": {
+    "node": ">=26"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/briward/brianwritescode.git"
   },
   "author": "Brian Ward",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/briward/brianwritescode/issues"
+  "scripts": {
+    "build": "node ./bin/build.ts && vite build",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
-  "homepage": "https://github.com/briward/brianwritescode#readme",
   "dependencies": {
-    "@raptor-js/kernel": "^0.30.0"
+    "@raptor-js/error": "^0.18.0",
+    "@raptor-js/kernel": "^0.30.0",
+    "@raptor-js/pages": "^0.7.0",
+    "@raptor-js/router": "^0.25.0",
+    "@raptor-js/types": "^0.4.0",
+    "gray-matter": "^4.0.3",
+    "ventojs": "^2.4.2"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261113.1",
-    "typescript": "^7.0.2",
+    "@eslint/js": "^10.0.1",
+    "@preact/preset-vite": "^2.10.6",
+    "@types/node": "^26.6.6",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsdoc": "^65.4.5",
+    "fuse.js": "^7.5.0",
+    "preact": "^10.29.8",
+    "prettier": "^3.10.1",
+    "rehype-pretty-code": "^0.14.6",
+    "shiki": "^4.6.0",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.72.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0",
     "wrangler": "^4.161.0"
-  },
-  "allowScripts": {
-    "esbuild@0.28.2": true,
-    "workerd@1.20261110.1": true,
-    "fsevents@2.3.3": true
   }
 }

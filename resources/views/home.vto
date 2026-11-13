@@ -1,0 +1,15 @@
+{{ layout "layouts/main.vto" {
+  description: frontmatter.description,
+  listTitle: "#",
+  listNotes: metadata.catalog.notes,
+  paneLabel: "readme",
+  view: "list",
+} }}
+  <section class="intro">
+    <h1>Hello, I'm Brian</h1>
+
+    <div class="prose">
+      {{ content |> safe }}
+    </div>
+  </section>
+{{ /layout }}

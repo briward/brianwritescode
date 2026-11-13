@@ -1,0 +1,17 @@
+<ul class="tag-tree">
+  <li>
+    <a class="tree-item{{ if !activeTag }} active{{ /if }}" href="/"{{ if !activeTag }} aria-current="page"{{ /if }}>
+      <span class="tree-name">#</span>
+      <span class="tree-count">{{ metadata.catalog.notes.length }}</span>
+    </a>
+  </li>
+
+  {{ for tag of metadata.catalog.tags }}
+  <li>
+    <a class="tree-item{{ if activeTag === tag.name }} active{{ /if }}" href="{{ tag.url }}"{{ if activeTag === tag.name }} aria-current="page"{{ /if }}>
+      <span class="tree-name tag-name">#{{ tag.name }}</span>
+      <span class="tree-count">{{ tag.notes.length }}</span>
+    </a>
+  </li>
+  {{ /for }}
+</ul>

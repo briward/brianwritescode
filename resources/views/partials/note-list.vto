@@ -1,0 +1,14 @@
+<ol class="note-list">
+  {{ for note of notes }}
+  <li>
+    <a class="note-card{{ if activeUrl === note.url }} active{{ /if }}" href="{{ note.url }}"{{ if activeUrl === note.url }} aria-current="page"{{ /if }}>
+      <span class="note-card-heading">
+        <span class="note-card-title">{{ note.title |> escape }}</span>
+        <span class="note-date">Created <time datetime="{{ note.date }}" title="{{ note.date }}" data-time-ago>{{ note.date }}</time></span>
+      </span>
+
+      <span class="note-card-excerpt">{{ metadata.excerptOf(note) |> escape }}</span>
+    </a>
+  </li>
+  {{ /for }}
+</ol>

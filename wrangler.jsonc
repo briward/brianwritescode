@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "brianwritescode",
+  "main": "bin/index.ts",
+  "compatibility_date": "2026-11-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [{ "pattern": "brianwritescode.com", "custom_domain": true }],
+  "assets": {
+    "directory": "dist",
+  },
+  // Builds dist/ before every deploy, and again in wrangler dev whenever a source changes.
+  "build": {
+    "command": "pnpm build",
+    "watch_dir": ["app", "config", "pages", "public", "resources"],
+  },
+  "observability": {
+    "enabled": true,
+  },
+}
