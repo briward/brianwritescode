@@ -109,6 +109,51 @@ time[data-time-ago] {
   }
 }
 
+/* Moving between pages, only the note pane animates: the old note fades out and the new one
+   fades in as it settles. The tags and notes panes stay put. Browsers without cross-document
+   view transitions (Firefox for now) load the page as before. */
+@view-transition {
+  navigation: auto;
+}
+
+.pane-body {
+  view-transition-name: note-pane;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-old(note-pane) {
+  animation: note-fade-out 120ms ease-in both;
+}
+
+::view-transition-new(note-pane) {
+  animation: note-fade-in 260ms cubic-bezier(0.2, 0.7, 0.2, 1) 60ms both;
+}
+
+@keyframes note-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes note-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 .app {
   display: grid;
   grid-template-columns: 15rem 23rem minmax(0, 1fr);

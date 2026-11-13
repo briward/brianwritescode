@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // A second Worker from this repo: it sends briward.com and www.briward.com on to
+  // brianwritescode.com. Deploy it with `pnpm deploy:redirect`.
+  "name": "briward-redirect",
+  "main": "bin/redirect.ts",
+  "compatibility_date": "2026-11-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    { "pattern": "briward.com", "custom_domain": true },
+    { "pattern": "www.briward.com", "custom_domain": true },
+  ],
+  "observability": {
+    "enabled": true,
+  },
+}

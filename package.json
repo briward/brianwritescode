@@ -15,6 +15,7 @@
     "build": "node ./bin/build.ts && vite build",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
+    "deploy:redirect": "wrangler deploy --config redirect.wrangler.jsonc",
     "typecheck": "tsc",
     "test": "vitest run",
     "test:watch": "vitest",
