@@ -1,0 +1,7 @@
+name = "brianwritescode"
+main = "src/index.ts"
+compatibility_date = "2026-11-13"
+
+routes = [
+  { pattern = "brianwritescode.com", custom_domain = true }
+]
