@@ -45,7 +45,7 @@ function renderPage(): string {
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        background: #1e1e2e;
+        background: #161616;
         color: #b4bcc8;
         font-family: "IBM Plex Mono", monospace;
       }
