@@ -212,12 +212,6 @@ export default function Search(): JSX.Element {
                 ))}
               </ol>
             )}
-
-            <footer class="search-footer">
-              <span>↑↓ move</span>
-              <span>↵ open</span>
-              <span>esc close</span>
-            </footer>
           </div>
         </div>
       )}
