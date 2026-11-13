@@ -11,7 +11,7 @@ export default {
   /**
    * @inheritdoc
    */
-  name: "brianwritescode",
+  name: "Hello, I write code",
 
   /**
    * @inheritdoc

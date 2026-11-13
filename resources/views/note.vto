@@ -1,4 +1,3 @@
-{{# One note. The catalog owns its title, day and tags; the MDX gives the body. #}}
 {{ set note = metadata.catalog.notes.find((candidate) => candidate.url === pathname) }}
 {{ layout "layouts/main.vto" {
   title: note.title,
